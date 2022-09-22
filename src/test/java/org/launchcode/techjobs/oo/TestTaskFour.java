@@ -112,4 +112,10 @@ public class TestTaskFour extends AbstractTest {
         testJobsForEqualityMethod.invoke(jobTest);
     }
 
+    @Test
+    public void testSettingJobId(){
+        Job job1 = new Job();
+        Job job2 = new Job();
+    }
+
 }
