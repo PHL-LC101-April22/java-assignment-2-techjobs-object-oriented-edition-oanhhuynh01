@@ -16,10 +16,124 @@ public class Job {
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
+    public Job() {
+        this.id = nextId;
+        nextId++;
+    }
+
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+        this();
+        this.name = name;
+        this.employer = employer;
+        this.location = location;
+        this.positionType = positionType;
+        this.coreCompetency = coreCompetency;
+    }
+
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Job)) return false;
+        Job job = (Job) o;
+        return this.getId() == job.getId();
+
+
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(getId());
+    }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Employer getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public PositionType getPositionType() {
+        return positionType;
+    }
+
+    public void setPositionType(PositionType positionType) {
+        this.positionType = positionType;
+    }
+
+    public CoreCompetency getCoreCompetency() {
+        return coreCompetency;
+    }
+
+    public void setCoreCompetency(CoreCompetency coreCompetency) {
+        this.coreCompetency = coreCompetency;
+    }
+    public String toString(){
+        String output;
+        String name ;
+        String employer ;
+        String location;
+        String position;
+        String coreComp;
+        if (this.name == null || this.name == ""){
+            name = "Data not available";
+        }else {name = this.name;}
+
+        if (this.employer == null || this.employer.getValue() == ""){
+            employer = "Data not available";
+        }else { employer = this.employer.getValue();}
+
+        if (this.location == null || this.location.getValue() == ""){
+            location = "Data not available";
+        }else {location = this.location.getValue();}
+
+        if (this.positionType == null || this.positionType.getValue() == ""){
+            position = "Data not available";
+        }else {position = this.positionType.getValue();}
+
+        if (this.coreCompetency == null || this.coreCompetency.getValue() == ""){
+            coreComp = "Data not available";
+        }else {coreComp = this.coreCompetency.getValue();}
+
+        if (name == "Data not available" && employer == "Data not available" && location == "Data not available" && position == "Data not available" && coreComp == "Data not available"){
+            return "OOPS! This job does not seem to exist.";
+
+        } else{
+            output = ("\nID: "+this.id
+                    +"\nName: "+name
+                    +"\nEmployer: "+employer
+                    +"\nLocation: "+location
+                    +"\nPosition Type: "+position
+                    +"\nCore Competency: "+coreComp
+                    +"\n");
+            return output;
+        }
+
+
+    }
 }
